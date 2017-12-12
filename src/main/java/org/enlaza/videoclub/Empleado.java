@@ -6,7 +6,9 @@
 package org.enlaza.videoclub;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,9 +19,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +39,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Empleado.findByApellidos", query = "SELECT e FROM Empleado e WHERE e.apellidos = :apellidos")})
 public class Empleado implements Serializable {
 
+    @Lob
+    @Column(name = "Foto")
+    private byte[] foto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleadoNumEmpleado")
+    private Collection<Alquiler> alquilerCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,9 +57,6 @@ public class Empleado implements Serializable {
     @Size(max = 255)
     @Column(name = "Apellidos")
     private String apellidos;
-    @Lob
-    @Column(name = "Foto")
-    private byte[] foto;
     @JoinColumn(name = "VideoclubCif", referencedColumnName = "Cif")
     @ManyToOne(optional = false)
     private Videoclub videoclubCif;
@@ -85,13 +92,6 @@ public class Empleado implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
 
     public Videoclub getVideoclubCif() {
         return videoclubCif;
@@ -124,6 +124,23 @@ public class Empleado implements Serializable {
     @Override
     public String toString() {
         return "org.enlaza.videoclub.Empleado[ numEmpleado=" + numEmpleado + " ]";
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    @XmlTransient
+    public Collection<Alquiler> getAlquilerCollection() {
+        return alquilerCollection;
+    }
+
+    public void setAlquilerCollection(Collection<Alquiler> alquilerCollection) {
+        this.alquilerCollection = alquilerCollection;
     }
     
 }

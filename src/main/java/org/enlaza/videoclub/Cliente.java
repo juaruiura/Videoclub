@@ -6,7 +6,9 @@
 package org.enlaza.videoclub;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +17,11 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,6 +38,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Cliente.findByDni", query = "SELECT c FROM Cliente c WHERE c.dni = :dni")})
 public class Cliente implements Serializable {
 
+    @Lob
+    @Column(name = "Foto")
+    private byte[] foto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteNumSocio")
+    private Collection<Alquiler> alquilerCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +59,6 @@ public class Cliente implements Serializable {
     @Size(max = 255)
     @Column(name = "Dni")
     private String dni;
-    @Lob
-    @Column(name = "Foto")
-    private byte[] foto;
 
     public Cliente() {
     }
@@ -92,13 +99,6 @@ public class Cliente implements Serializable {
         this.dni = dni;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
 
     @Override
     public int hashCode() {
@@ -123,6 +123,23 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "org.enlaza.videoclub.Cliente[ numSocio=" + numSocio + " ]";
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    @XmlTransient
+    public Collection<Alquiler> getAlquilerCollection() {
+        return alquilerCollection;
+    }
+
+    public void setAlquilerCollection(Collection<Alquiler> alquilerCollection) {
+        this.alquilerCollection = alquilerCollection;
     }
     
 }

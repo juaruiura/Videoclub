@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(org.enlaza.videoclub.service.AlquilerFacadeREST.class);
         resources.add(org.enlaza.videoclub.service.ClienteFacadeREST.class);
         resources.add(org.enlaza.videoclub.service.EmpleadoFacadeREST.class);
         resources.add(org.enlaza.videoclub.service.PeliculaFacadeREST.class);
