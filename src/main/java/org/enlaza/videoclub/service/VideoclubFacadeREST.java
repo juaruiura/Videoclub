@@ -25,7 +25,7 @@ import org.enlaza.videoclub.Videoclub;
  * @author Juan Manuel
  */
 @Stateless
-@Path("org.enlaza.videoclub.videoclub")
+@Path("videoclub")
 public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
 
     @PersistenceContext(unitName = "org.enlaza_Videoclub_war_1.0-SNAPSHOTPU")
@@ -43,20 +43,20 @@ public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
     }
 
     @PUT
-    @Path("{id}")
+    @Path("put/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") String id, Videoclub entity) {
         super.edit(entity);
     }
 
     @DELETE
-    @Path("{id}")
+    @Path("delete/{id}")
     public void remove(@PathParam("id") String id) {
         super.remove(super.find(id));
     }
 
     @GET
-    @Path("{id}")
+    @Path("find/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Videoclub find(@PathParam("id") String id) {
         return super.find(id);
@@ -64,13 +64,14 @@ public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
 
     @GET
     @Override
+    @Path("findAll")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Videoclub> findAll() {
         return super.findAll();
     }
 
     @GET
-    @Path("{from}/{to}")
+    @Path("findRange/{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Videoclub> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});

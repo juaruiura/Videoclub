@@ -25,7 +25,7 @@ import org.enlaza.videoclub.Alquiler;
  * @author Juan Manuel
  */
 @Stateless
-@Path("org.enlaza.videoclub.alquiler")
+@Path("alquiler")
 public class AlquilerFacadeREST extends AbstractFacade<Alquiler> {
 
     @PersistenceContext(unitName = "org.enlaza_Videoclub_war_1.0-SNAPSHOTPU")
@@ -43,20 +43,20 @@ public class AlquilerFacadeREST extends AbstractFacade<Alquiler> {
     }
 
     @PUT
-    @Path("{id}")
+    @Path("put/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Long id, Alquiler entity) {
         super.edit(entity);
     }
 
     @DELETE
-    @Path("{id}")
+    @Path("delete/{id}")
     public void remove(@PathParam("id") Long id) {
         super.remove(super.find(id));
     }
 
     @GET
-    @Path("{id}")
+    @Path("find/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Alquiler find(@PathParam("id") Long id) {
         return super.find(id);
@@ -64,13 +64,14 @@ public class AlquilerFacadeREST extends AbstractFacade<Alquiler> {
 
     @GET
     @Override
+    @Path("findAll")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Alquiler> findAll() {
         return super.findAll();
     }
 
     @GET
-    @Path("{from}/{to}")
+    @Path("findRange/{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Alquiler> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});

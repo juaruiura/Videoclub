@@ -25,7 +25,7 @@ import org.enlaza.videoclub.Cliente;
  * @author Juan Manuel
  */
 @Stateless
-@Path("org.enlaza.videoclub.cliente")
+@Path("cliente")
 public class ClienteFacadeREST extends AbstractFacade<Cliente> {
 
     @PersistenceContext(unitName = "org.enlaza_Videoclub_war_1.0-SNAPSHOTPU")
@@ -43,20 +43,20 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
     }
 
     @PUT
-    @Path("{id}")
+    @Path("put/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Cliente entity) {
         super.edit(entity);
     }
 
     @DELETE
-    @Path("{id}")
+    @Path("delete/{id}")
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
 
     @GET
-    @Path("{id}")
+    @Path("find/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Cliente find(@PathParam("id") Integer id) {
         return super.find(id);
@@ -64,13 +64,14 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
 
     @GET
     @Override
+    @Path("findAll")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Cliente> findAll() {
         return super.findAll();
     }
 
     @GET
-    @Path("{from}/{to}")
+    @Path("findRange/{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Cliente> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
