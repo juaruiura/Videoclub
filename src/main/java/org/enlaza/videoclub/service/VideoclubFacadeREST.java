@@ -36,15 +36,15 @@ public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
     }
 
     @POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("post")
+    @Consumes(MediaType.APPLICATION_JSON)
     public void create(Videoclub entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("put/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     public void edit(@PathParam("id") String id, Videoclub entity) {
         super.edit(entity);
     }
@@ -65,7 +65,7 @@ public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
     @GET
     @Override
     @Path("findAll")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Videoclub> findAll() {
         return super.findAll();
     }

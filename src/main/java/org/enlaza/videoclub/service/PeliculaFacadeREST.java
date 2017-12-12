@@ -36,7 +36,7 @@ public class PeliculaFacadeREST extends AbstractFacade<Pelicula> {
     }
 
     @POST
-    @Override
+    @Path("post")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Pelicula entity) {
         super.create(entity);

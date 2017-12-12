@@ -36,7 +36,7 @@ public class AlquilerFacadeREST extends AbstractFacade<Alquiler> {
     }
 
     @POST
-    @Override
+    @Path("post")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Alquiler entity) {
         super.create(entity);

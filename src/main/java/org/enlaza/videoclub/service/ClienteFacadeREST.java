@@ -36,7 +36,7 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
     }
 
     @POST
-    @Override
+    @Path("post")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Cliente entity) {
         super.create(entity);
