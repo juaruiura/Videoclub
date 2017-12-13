@@ -37,42 +37,42 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
 
     @POST
     @Path("post")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     public void create(Cliente entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("put/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Cliente entity) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void edit(@PathParam("id") int id, Cliente entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("delete/{id}")
-    public void remove(@PathParam("id") Integer id) {
+    public void remove(@PathParam("id") String id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("find/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Cliente find(@PathParam("id") Integer id) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Cliente find(@PathParam("id") int id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Path("findAll")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Cliente> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("findRange/{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Cliente> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }

@@ -45,7 +45,7 @@ public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
     @PUT
     @Path("put/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void edit(@PathParam("id") String id, Videoclub entity) {
+    public void edit(@PathParam("id") int id, Videoclub entity) {
         super.edit(entity);
     }
 
@@ -57,8 +57,8 @@ public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
 
     @GET
     @Path("find/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Videoclub find(@PathParam("id") String id) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Videoclub find(@PathParam("id") int id) {
         return super.find(id);
     }
 
@@ -72,7 +72,7 @@ public class VideoclubFacadeREST extends AbstractFacade<Videoclub> {
 
     @GET
     @Path("findRange/{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Videoclub> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }

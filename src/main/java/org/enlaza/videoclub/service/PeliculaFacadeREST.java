@@ -37,15 +37,15 @@ public class PeliculaFacadeREST extends AbstractFacade<Pelicula> {
 
     @POST
     @Path("post")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     public void create(Pelicula entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("put/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") String id, Pelicula entity) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void edit(@PathParam("id") int id, Pelicula entity) {
         super.edit(entity);
     }
 
@@ -57,7 +57,7 @@ public class PeliculaFacadeREST extends AbstractFacade<Pelicula> {
 
     @GET
     @Path("find/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public Pelicula find(@PathParam("id") String id) {
         return super.find(id);
     }
@@ -65,14 +65,14 @@ public class PeliculaFacadeREST extends AbstractFacade<Pelicula> {
     @GET
     @Override
     @Path("findAll")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Pelicula> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("findRange/{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Pelicula> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
