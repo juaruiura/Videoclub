@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
         resources.add(org.enlaza.videoclub.service.ClienteFacadeREST.class);
         resources.add(org.enlaza.videoclub.service.EmpleadoFacadeREST.class);
         resources.add(org.enlaza.videoclub.service.PeliculaFacadeREST.class);
+        resources.add(org.enlaza.videoclub.service.UsuarioFacadeREST.class);
         resources.add(org.enlaza.videoclub.service.VideoclubFacadeREST.class);
     }
     
